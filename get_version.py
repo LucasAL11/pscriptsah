@@ -2,6 +2,24 @@ import logging
 from win32api import GetFileVersionInfo, HIWORD, LOWORD
 
 def get_version_number(file_path):
+    """
+    Gets the version number from a file.
+
+    Parameters
+    ----------
+    file_path : str
+        The path to the file to get the version number from.
+
+    Returns
+    -------
+    str
+        The version number of the file, or 'no_version_found' if the file does not exist or is not a valid file.
+
+    Raises
+    ------
+    Exception
+        If an unexpected error occurs.
+    """
     try:
         file_info = GetFileVersionInfo(file_path, "\\")
         ms_file_version = file_info['FileVersionMS']
