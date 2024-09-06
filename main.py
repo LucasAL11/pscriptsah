@@ -1,6 +1,5 @@
-from Folder_utils import create_local_folder
+from Folder_utils import create_local_folder, get_current_path
 from updater import *
-from utils import get_current_path
 from open_file import open_file
 from zip_utils import extract_zip_file
 import json
