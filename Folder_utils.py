@@ -1,6 +1,5 @@
 import os
 
-
 def create_local_folder(path):
     """
     Creates a local folder if it does not exist.
@@ -52,3 +51,14 @@ def verify_if_folder_is_server_path(path):
         return True
     else:
         return False
+    
+def get_current_path():
+    """
+    Gets the current working directory.
+
+    Returns
+    -------
+    str
+        The current working directory.
+    """
+    return os.getcwd()
