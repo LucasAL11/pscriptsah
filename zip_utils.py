@@ -1,19 +1,31 @@
+import logging
 import zipfile
+import patoolib
 
-def extract_zip_file(path_to_zip_file, directory_to_extract_to):
+def extract_archive_file(path_to_archive_file, directory_to_extract_to):
     """
-    Extracts a zip file to a directory.
+    Extracts an archive file to a directory.
 
     Parameters
     ----------
-    path_to_zip_file : str
-        The path to the zip file to be extracted.
+    path_to_archive_file : str
+        The path to the archive file to be extracted.
     directory_to_extract_to : str
-        The directory to which the zip file should be extracted.
+        The directory to which the archive file should be extracted.
 
     Returns
     -------
     None
     """
-    with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
-        zip_ref.extractall(directory_to_extract_to + '/att')
+    if path_to_archive_file.endswith(".zip"):
+        with zipfile.ZipFile(path_to_archive_file, "r") as zip_ref:
+            zip_ref.extractall(directory_to_extract_to + "/att")
+    elif path_to_archive_file.endswith(".rar"):
+        try:
+            patoolib.extract_archive(
+                path_to_archive_file, outdir=directory_to_extract_to + "/att"
+            )
+        except patoolib.util.PatoolError as e:
+            logging.error(f"Erro ao extrair arquivo: {e}")
+    else:
+        raise ValueError(f"Unsupported archive type: {path_to_archive_file}")

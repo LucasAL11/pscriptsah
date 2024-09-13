@@ -1,4 +1,5 @@
 import os
+import shutil
 
 def create_local_folder(path):
     """
@@ -30,7 +31,7 @@ def delete_local_folder(path):
     None
     """
     if os.path.exists(path):
-        os.rmdir(path)
+       shutil.rmtree(path, ignore_errors=True)
 
 def verify_if_folder_is_server_path(path):
     """

@@ -1,23 +1,40 @@
-from Folder_utils import create_local_folder, get_current_path
+from Folder_utils import create_local_folder, delete_local_folder, get_current_path
 from updater import *
 from open_file import open_file
-from zip_utils import extract_zip_file
+from zip_utils import extract_archive_file
 import json
 
+
+remote_paths = [
+    r"\\10.0.100.220\C$\\Hino\\ERP\\wfa\\",
+    r"\\10.0.100.221\C$\\Hino\\ERP\\wfa\\",
+    r"\\10.0.100.222\C$\\Hino\\ERP\\wfa\\",
+    r"\\10.0.100.226\C$\\Hino\\ERP\\wfa\\",
+    r"\\10.0.100.227\C$\\Hino\\ERP\\wfa\\",
+    r"\\10.0.100.228\C$\\Hino\\ERP\\wfa\\",
+    r"\\10.0.100.229\C$\\Hino\\ERP\\wfa\\",
+    r"\\10.0.100.230\C$\\Hino\\ERP\\wfa\\",
+    r"\\10.0.100.235\C$\\Hino\\ERP\\wfa\\",
+    r"\\10.0.100.238\C$\\Hino\\ERP\\wfa\\",
+    r"\\10.0.100.240\C$\\Hino\\ERP\\wfa\\",
+    r"\\plt-local.com.br\odin\Netuno\HinoAtualizador\ERP",
+]
+
+
 def main():
-    local_path = get_current_path()
 
-    with open('remote.config.json', 'r') as file:
-        remote_paths = json.load(file)
-
-
+  
     file = open_file()
-    extract_zip_file(file, local_path)
 
-    create_local_folder(local_path + '/att')
-
+    local_path = get_current_path()
+    create_local_folder(local_path + "/att")
+    extract_archive_file(file, local_path) 
+   
     for remote_path in remote_paths:
-        update_remote_path(local_path + '/att', remote_path)
+        print(R"iniciando atualização de: " + remote_path)
+        update_remote_path(local_path + "/att", remote_path)
+    
+    delete_local_folder(local_path + "/att")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
