@@ -20,5 +20,4 @@ def verify_hash_file(file_path, remote_file_path):
                 hash2.update(byte_block)
         return hash1.hexdigest() == hash2.hexdigest()
     except Exception as e:
-        #logging.error(f"erro ao verificar hash: {e}")
         return False

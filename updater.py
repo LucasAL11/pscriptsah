@@ -174,12 +174,12 @@ def _update_files(local_path, remote_path):
                     hash = verify_hash_file(src_file, dst_file)
 
                     if not hash:
-                        pbar.set_postfix(
+                        pbar.set_description(
                             text=f"Tentando copiar arquivo novamente: {file}"
                         )
                         retrier_count += 1
                         break
 
-                    pbar.set_postfix(text=f"Arquivo copiado: {file}")
+                    pbar.set_description(text=f"Arquivo copiado: {file}")
 
                 pbar.update(1)

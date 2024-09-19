@@ -23,18 +23,14 @@ remote_paths = [
 
 def main():
 
-  
     file = open_file()
-
     local_path = get_current_path()
     create_local_folder(local_path + "/att")
     extract_archive_file(file, local_path) 
    
     for remote_path in remote_paths:
         print(R"iniciando atualização de: " + remote_path)
-        update_remote_path(local_path + "/att", remote_path)
-    
+        update_remote_path(local_path + "/att", remote_path) 
     delete_local_folder(local_path + "/att")
-
 if __name__ == "__main__":
     main()
